@@ -101,8 +101,7 @@
 		6B6637B12A4C9485004229C6 /* iShop */ = {
 			isa = PBXGroup;
 			children = (
-				6B6637B22A4C9485004229C6 /* AppDelegate.swift */,
-				6B6637B42A4C9485004229C6 /* SceneDelegate.swift */,
+				6B6637E52A4C94FD004229C6 /* Application */,
 				6B6637B62A4C9485004229C6 /* ViewController.swift */,
 				6B6637B82A4C9485004229C6 /* Main.storyboard */,
 				6B6637BE2A4C9485004229C6 /* Assets.xcassets */,
@@ -128,6 +127,15 @@
 				6B6637D82A4C9486004229C6 /* iShopUITestsLaunchTests.swift */,
 			);
 			path = iShopUITests;
+			sourceTree = "<group>";
+		};
+		6B6637E52A4C94FD004229C6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6B6637B22A4C9485004229C6 /* AppDelegate.swift */,
+				6B6637B42A4C9485004229C6 /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
