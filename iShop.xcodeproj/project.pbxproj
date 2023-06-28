@@ -102,10 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				6B6637E52A4C94FD004229C6 /* Application */,
+				6B6637E62A4C9681004229C6 /* Storyboard */,
+				6B6637E72A4C969F004229C6 /* Helper */,
+				6B6637E82A4C96AC004229C6 /* Utility */,
+				6B6637E92A4C96B8004229C6 /* Extension */,
+				6B6637EA2A4C96C0004229C6 /* Constant */,
 				6B6637B62A4C9485004229C6 /* ViewController.swift */,
-				6B6637B82A4C9485004229C6 /* Main.storyboard */,
 				6B6637BE2A4C9485004229C6 /* Assets.xcassets */,
-				6B6637C02A4C9485004229C6 /* LaunchScreen.storyboard */,
 				6B6637C32A4C9485004229C6 /* Info.plist */,
 				6B6637BB2A4C9485004229C6 /* iShop.xcdatamodeld */,
 			);
@@ -136,6 +139,43 @@
 				6B6637B42A4C9485004229C6 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		6B6637E62A4C9681004229C6 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				6B6637C02A4C9485004229C6 /* LaunchScreen.storyboard */,
+				6B6637B82A4C9485004229C6 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		6B6637E72A4C969F004229C6 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		6B6637E82A4C96AC004229C6 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		6B6637E92A4C96B8004229C6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6B6637EA2A4C96C0004229C6 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
