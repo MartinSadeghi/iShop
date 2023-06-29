@@ -17,8 +17,6 @@ protocol EndPointType {
     var path: String { get }
     var baseURL: String { get }
     var url: URL? { get }
-    var method: HTTPMethods { get }
-    var body: Codable? { get }
-    var headers: [String : String]? { get }
+   
 }
 
