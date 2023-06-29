@@ -13,27 +13,49 @@ class MainViewController: UIViewController {
 
      
     
+    
         // MARK:  - Application LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
         configureTabBarController()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupTabBarController()
     }
     
     
     
         // MARK:  - Methods
-
+    
     /// Configuring TabBarController
     private func configureTabBarController() {
-        mainTabBarViewController.tabBar.tintColor       = .white
+//        mainTabBarViewController.tabBar.backgroundColor = .systemGray5
+        mainTabBarViewController.tabBar.tintColor = .white
     }
+    
+    /// Setting up TabBarConstraint
+    private func setupTabBarController() {
+        let allReminderViewController = UINavigationController(rootViewController: CategoryViewController())
+        allReminderViewController.tabBarItem.image = UIImage(systemName: "house")
+        allReminderViewController.tabBarItem.title = "Categories"
+        allReminderViewController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+
+        let savedRemindersViewController = UINavigationController(rootViewController: SaveViewController())
+        savedRemindersViewController.tabBarItem.image = UIImage(systemName: "opticaldiscdrive")
+        savedRemindersViewController.tabBarItem.selectedImage = UIImage(systemName: "opticaldiscdrive.fill")
+        savedRemindersViewController.tabBarItem.title = "Saved"
+
+
+        mainTabBarViewController.setViewControllers([allReminderViewController, savedRemindersViewController], animated: false)
+        mainTabBarViewController.modalPresentationStyle = .fullScreen
+        present(mainTabBarViewController, animated: true)
+
+    }
+
 
 
 }
