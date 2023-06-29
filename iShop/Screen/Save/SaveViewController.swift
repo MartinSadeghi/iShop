@@ -11,6 +11,7 @@ class SaveViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "SaveVCBackgroundColor")
 
         // Do any additional setup after loading the view.
     }

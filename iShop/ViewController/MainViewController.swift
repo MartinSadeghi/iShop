@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
     
     /// Configuring TabBarController
     private func configureTabBarController() {
-//        mainTabBarViewController.tabBar.backgroundColor = .systemGray5
+        mainTabBarViewController.tabBar.backgroundColor = UIColor(named: "TabBarBackgroundColor")
         mainTabBarViewController.tabBar.tintColor = .white
     }
     
