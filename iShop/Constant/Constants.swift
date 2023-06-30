@@ -9,8 +9,20 @@ import Foundation
 
 
 enum Constants {
+    
+//    URLs
     enum API {
         static let categoryURL = "https://dummyjson.com/products/categories"
         static let productURL = "https://dummyjson.com/products/category/smartphones"
     }
+    
+    
+    
+//    Cell Identifiers
+        static let categoryCellIdentifier = "CategoryCell"
+        static let saveCellIdentifier     = "SaveCell"
+    
+    
 }
+
+

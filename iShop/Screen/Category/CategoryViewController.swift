@@ -8,23 +8,65 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
-        
-        // Do any additional setup after loading the view.
+        configureTableView()
+        setupCategoryTableViewConstraint()
     }
     
+    var categories : [CategoryModel] = [
+        CategoryModel(title: "Kylo", image: nil),
+        CategoryModel(title: "Cooper", image: nil)
+    
+    ]
+    
+    
+        // MARK:  -    UI Outlets
+    private lazy var categoryTableView : UITableView = {
+        let table             = UITableView()
+        table.register(CategoryCell.self, forCellReuseIdentifier: Constants.categoryCellIdentifier)
+        return table
+    }()
 
-    /*
-    // MARK: - Navigation
+    ///  Configuration for TableView
+    func configureTableView() {
+        categoryTableView.delegate        = self
+        categoryTableView.dataSource      = self
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//        categoryTableView.backgroundColor = UIColor(named: "pokemonsViewControllerBackground")
     }
-    */
+    
+    
+    
+    /// setup CategoryTableViewConstraint
+    private func setupCategoryTableViewConstraint() {
+        view.addSubview(categoryTableView)
+        categoryTableView.translatesAutoresizingMaskIntoConstraints = false
+        categoryTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        categoryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        categoryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
+        categoryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
+    }
+    
+    
+}
 
+
+extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
+        let categoryItems = categories[indexPath.row]
+        cell.categoryItem = categoryItems
+        return cell
+    }
 }

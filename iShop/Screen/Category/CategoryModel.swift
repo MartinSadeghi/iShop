@@ -9,3 +9,9 @@ import Foundation
 
 
 //    "https://dummyjson.com/products/categories"
+
+
+struct CategoryModel {
+    let title: String
+    let image: String?
+}
