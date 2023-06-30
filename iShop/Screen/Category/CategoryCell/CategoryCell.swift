@@ -9,13 +9,16 @@ import UIKit
 
 class CategoryCell: UITableViewCell {
 
+    
+    
+    
     //MARK: - Application LifeCycle
     
     /// Layout SubViews
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.layer.cornerRadius = 20
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        contentView.layer.cornerRadius = 15
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
         categoryImageConstraint()
         categoryNameLableConstraint()
     }
@@ -25,8 +28,7 @@ class CategoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(categoryImage)
         contentView.addSubview(categoryNameLable)
-//        contentView.backgroundColor = Colors.cellColors.randomElement() as? UIColor
-        
+//        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
     }
     
     /// Required Cell NSCoder
@@ -50,13 +52,12 @@ class CategoryCell: UITableViewCell {
     
     /// Creating Category Image Cell
     private lazy var categoryImage  : UIImageView = {
-        let image                   = UIImageView(frame: CGRectMake(0, 0, 100, 100))
+        let image                   = UIImageView()
         image.contentMode           = .scaleAspectFit
         image.clipsToBounds         = false
         image.layer.cornerRadius    = (image.frame.size.width ) / 2
         image.layer.borderWidth     = 3.0
-        image.backgroundColor       = UIColor(red: 0.6, green: 0.2, blue: 0.5, alpha: 0.4)
-        image.layer.borderColor     = UIColor.green.cgColor
+        image.image = UIImage(named: "plus.app")
         return image
     }()
     
@@ -66,8 +67,8 @@ class CategoryCell: UITableViewCell {
     private lazy var categoryNameLable : UILabel = {
         let lable                      = UILabel()
         lable.textColor                = .white
-        lable.textAlignment            = .center
-        lable.font                     = UIFont(name:"Chalkboard SE", size: 28)
+        lable.textAlignment            = .left
+        lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
         return lable
     }()
     
@@ -76,12 +77,12 @@ class CategoryCell: UITableViewCell {
     /// Set Category Image Constraint
     private func categoryImageConstraint() {
         
-        categoryImage.translatesAutoresizingMaskIntoConstraints                                                        = false
+        categoryImage.translatesAutoresizingMaskIntoConstraints = false
         categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryImage.widthAnchor.constraint(greaterThanOrEqualTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
-//        categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
+        categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
     }
     
     
@@ -91,22 +92,20 @@ class CategoryCell: UITableViewCell {
         categoryNameLable.translatesAutoresizingMaskIntoConstraints = false
         categoryNameLable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryNameLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        categoryNameLable.leadingAnchor.constraint(equalTo: categoryImage.leadingAnchor, constant: 10).isActive = true
+        categoryNameLable.leadingAnchor.constraint(equalTo: categoryImage.trailingAnchor, constant: 10).isActive = true
         categoryNameLable.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
     }
     
     
     
-    
     //MARK: -   Methods
-    
     
     /// Filling Cell Data
     
     func categoryCellDetailsConfiguration() {
         guard let categoryItem else { return }
         categoryNameLable.text = categoryItem.title
-        categoryImage.image = UIImage(named: "plus.app")
+//        categoryImage.image = UIImage(named: "plus.app")
 //        categoryImage.setImage(with: categoryItem.image)
        
     }

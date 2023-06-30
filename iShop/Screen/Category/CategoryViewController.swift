@@ -10,7 +10,10 @@ import UIKit
 class CategoryViewController: UIViewController {
     
     
-
+    // MARK:  - Variables
+    
+//    var categories = [CategoryModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
@@ -29,6 +32,7 @@ class CategoryViewController: UIViewController {
     private lazy var categoryTableView : UITableView = {
         let table             = UITableView()
         table.register(CategoryCell.self, forCellReuseIdentifier: Constants.categoryCellIdentifier)
+        table.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
         return table
     }()
 
@@ -65,8 +69,11 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
+        cell.accessoryType = .disclosureIndicator
         let categoryItems = categories[indexPath.row]
         cell.categoryItem = categoryItems
         return cell
     }
+    
+    
 }
