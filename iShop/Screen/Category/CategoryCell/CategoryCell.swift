@@ -18,7 +18,7 @@ class CategoryCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = 15
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
         categoryImageConstraint()
         categoryNameLableConstraint()
     }
@@ -80,9 +80,9 @@ class CategoryCell: UITableViewCell {
         categoryImage.translatesAutoresizingMaskIntoConstraints = false
         categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         categoryImage.widthAnchor.constraint(greaterThanOrEqualTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
-        categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
     }
     
     
