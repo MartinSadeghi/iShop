@@ -57,7 +57,6 @@ class CategoryViewController: UIViewController {
         categoryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
     }
 
-
 }
 
 
