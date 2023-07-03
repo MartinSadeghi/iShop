@@ -28,7 +28,8 @@ class CategoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(categoryImage)
         contentView.addSubview(categoryNameLable)
-//        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
+        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
+        contentView.tintColor = UIColor(named: "CategoryCellContentColor")
     }
     
     /// Required Cell NSCoder
@@ -57,7 +58,7 @@ class CategoryCell: UITableViewCell {
         image.clipsToBounds         = false
         image.layer.cornerRadius    = (image.frame.size.width ) / 2
         image.layer.borderWidth     = 3.0
-        image.image = UIImage(named: "plus.app")
+        image.image = UIImage(named: "book.app")
         return image
     }()
     
@@ -81,14 +82,19 @@ class CategoryCell: UITableViewCell {
         categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-//        categoryImage.widthAnchor.constraint(greaterThanOrEqualTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
-//        categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
+        categoryImage.widthAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
+        categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
     }
-    
-    
-   
-    
-    
+//    private func categoryImageConstraint() {
+//        categoryImage.translatesAutoresizingMaskIntoConstraints = false
+//        categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+//        categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+//        categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+//        categoryImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
+//        categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
+//    }
+
+
     
     /// Set Category NameLable Constraint
     private func categoryNameLableConstraint() {
