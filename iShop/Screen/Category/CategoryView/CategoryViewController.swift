@@ -23,8 +23,10 @@ class CategoryViewController: UIViewController {
     }
 
     var categories : [CategoryModel] = [
-        CategoryModel(title: "Kylo", image: nil),
-        CategoryModel(title: "Cooper", image: nil)
+        CategoryModel(title: "Kylo", image: nil)
+//        CategoryModel(title: "Cooper", image: nil),
+//        CategoryModel(title: "Miely", image: nil)
+
 
     ]
 

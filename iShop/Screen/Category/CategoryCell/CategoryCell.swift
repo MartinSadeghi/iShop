@@ -19,8 +19,8 @@ class CategoryCell: UITableViewCell {
         super.layoutSubviews()
         contentView.layer.cornerRadius = 15
 //        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
-        categoryImageConstraint()
-        categoryNameLableConstraint()
+        CollectingElementsConstraints()
+        
     }
     
     /// Initializing Cell
@@ -28,8 +28,8 @@ class CategoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(categoryImage)
         contentView.addSubview(categoryNameLable)
+        contentView.addSubview(categoryDisclosure)
         contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
-        contentView.tintColor = UIColor(named: "CategoryCellContentColor")
     }
     
     /// Required Cell NSCoder
@@ -47,6 +47,7 @@ class CategoryCell: UITableViewCell {
     
     
     
+    
     //MARK: -   UI Outlets
     
     
@@ -54,11 +55,11 @@ class CategoryCell: UITableViewCell {
     /// Creating Category Image Cell
     private lazy var categoryImage  : UIImageView = {
         let image                   = UIImageView()
-        image.contentMode           = .scaleAspectFit
         image.clipsToBounds         = false
+        image.contentMode           = .scaleAspectFit
         image.layer.cornerRadius    = (image.frame.size.width ) / 2
-        image.layer.borderWidth     = 3.0
-        image.image = UIImage(named: "book.app")
+//        image.layer.borderWidth     = 1.0
+        image.image                 = UIImage(systemName: "checkmark.seal")
         return image
     }()
     
@@ -74,39 +75,55 @@ class CategoryCell: UITableViewCell {
     }()
     
     
+    /// Creating Category NameLable Cell
+    private lazy var categoryDisclosure : UIImageView = {
+       let image                        = UIImageView()
+        image.clipsToBounds             = false
+        image.contentMode               = .scaleAspectFit
+        image.layer.cornerRadius        = (image.frame.size.width ) / 2
+        image.image                     = UIImage(systemName: "chevron.right")
+        return image
+    }()
     
-    /// Set Category Image Constraint
+    
+    /// Collecting all of Constraints
+    private func CollectingElementsConstraints() {
+        categoryImageConstraint()
+        categoryNameLableConstraint()
+        categoryDisclosureConstraint()
+    }
+    
+   
+    
     private func categoryImageConstraint() {
-        
+
         categoryImage.translatesAutoresizingMaskIntoConstraints = false
         categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        categoryImage.widthAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
-        categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
+        categoryImage.widthAnchor.constraint(lessThanOrEqualTo: categoryImage.heightAnchor).isActive = true
     }
-//    private func categoryImageConstraint() {
-//        categoryImage.translatesAutoresizingMaskIntoConstraints = false
-//        categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-//        categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-//        categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-//        categoryImage.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
-//        categoryImage.heightAnchor.constraint(equalTo: categoryImage.widthAnchor).isActive = true
-//    }
 
-
-    
     /// Set Category NameLable Constraint
     private func categoryNameLableConstraint() {
-        
+
         categoryNameLable.translatesAutoresizingMaskIntoConstraints = false
         categoryNameLable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryNameLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryNameLable.leadingAnchor.constraint(equalTo: categoryImage.trailingAnchor, constant: 10).isActive = true
-        categoryNameLable.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
     }
-    
-    
+
+
+    /// Set Category Disclosure Constraint
+    private func categoryDisclosureConstraint() {
+
+        categoryDisclosure.translatesAutoresizingMaskIntoConstraints = false
+        categoryDisclosure.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        categoryDisclosure.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        categoryDisclosure.leadingAnchor.constraint(equalTo: categoryNameLable.trailingAnchor, constant: 5).isActive = true
+        categoryDisclosure.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+    }
+
     
     //MARK: -   Methods
     
