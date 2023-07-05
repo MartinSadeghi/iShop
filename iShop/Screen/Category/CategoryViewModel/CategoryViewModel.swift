@@ -12,13 +12,13 @@ class CategoryViewModel {
     
     private var categories: [CategoryModel] = []
     
-    func fetchCategories() {
-        // Simulated data fetch
-        categories = [
-            CategoryModel(title: "Kylo", image: nil),
-            CategoryModel(title: "Cooper", image: nil)
-        ]
-    }
+//    func fetchCategories() {
+//        // Simulated data fetch
+//        categories = [
+//            CategoryModel(title: "Kylo", image: nil),
+//            CategoryModel(title: "Cooper", image: nil)
+//        ]
+//    }
     
     func numberOfCategories() -> Int {
         return categories.count

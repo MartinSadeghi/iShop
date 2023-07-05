@@ -130,8 +130,8 @@ class CategoryCell: UITableViewCell {
     /// Filling Cell Data
     
     func categoryCellDetailsConfiguration() {
-        guard let categoryItem else { return }
-        categoryNameLable.text = categoryItem.title
+        guard let categoryItem = categoryItem?.first else { return }
+        categoryNameLable.text = categoryItem
 //        categoryImage.image = UIImage(named: "plus.app")
 //        categoryImage.setImage(with: categoryItem.image)
        
