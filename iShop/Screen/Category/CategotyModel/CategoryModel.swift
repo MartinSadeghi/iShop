@@ -8,10 +8,21 @@
 import Foundation
 
 
-//    "https://dummyjson.com/products/categories"
+
+typealias CategoryModel = [String]
+
+//struct CategoryModel: Codable {
+//    let categories: String
+//}
+
+//struct CategoryModel: Codable {
+//    let items : String
+//}
 
 
-struct CategoryModel {
-    let title: String
-    let image: String?
+
+
+struct CategoryModelFake: Codable {
+    let title : String
+//    let image : String?
 }

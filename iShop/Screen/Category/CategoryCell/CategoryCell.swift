@@ -18,7 +18,6 @@ class CategoryCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = 15
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
         CollectingElementsConstraints()
         
     }
@@ -45,12 +44,16 @@ class CategoryCell: UITableViewCell {
         }
     }
     
+//    var categoryFakeItem: CategoryModelFake? {
+//        didSet {
+//            categoryCellDetailsConfiguration()
+//        }
+//    }
+    
     
     
     
     //MARK: -   UI Outlets
-    
-    
     
     /// Creating Category Image Cell
     private lazy var categoryImage  : UIImageView = {
@@ -58,7 +61,6 @@ class CategoryCell: UITableViewCell {
         image.clipsToBounds         = false
         image.contentMode           = .scaleAspectFit
         image.layer.cornerRadius    = (image.frame.size.width ) / 2
-//        image.layer.borderWidth     = 1.0
         image.image                 = UIImage(systemName: "checkmark.seal")
         return image
     }()
@@ -90,11 +92,11 @@ class CategoryCell: UITableViewCell {
     private func CollectingElementsConstraints() {
         categoryImageConstraint()
         categoryNameLableConstraint()
-        categoryDisclosureConstraint()
+        categoryDisclosureImageConstraint()
     }
     
    
-    
+    /// Set CategoryImage Constraint
     private func categoryImageConstraint() {
 
         categoryImage.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +106,7 @@ class CategoryCell: UITableViewCell {
         categoryImage.widthAnchor.constraint(lessThanOrEqualTo: categoryImage.heightAnchor).isActive = true
     }
 
-    /// Set Category NameLable Constraint
+    /// Set CategoryNameLable Constraint
     private func categoryNameLableConstraint() {
 
         categoryNameLable.translatesAutoresizingMaskIntoConstraints = false
@@ -114,8 +116,8 @@ class CategoryCell: UITableViewCell {
     }
 
 
-    /// Set Category Disclosure Constraint
-    private func categoryDisclosureConstraint() {
+    /// Set CategoryDisclosureImage Constraint
+    private func categoryDisclosureImageConstraint() {
 
         categoryDisclosure.translatesAutoresizingMaskIntoConstraints = false
         categoryDisclosure.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
@@ -130,22 +132,16 @@ class CategoryCell: UITableViewCell {
     /// Filling Cell Data
     
     func categoryCellDetailsConfiguration() {
-        guard let categoryItem = categoryItem?.first else { return }
-        categoryNameLable.text = categoryItem
+
+//        categoryNameLable.text = categoryFakeItem.title
+        guard let categoryItem else { return }
+        print(categoryItem)
+        categoryNameLable.text = categoryItem.first
+        
 //        categoryImage.image = UIImage(named: "plus.app")
 //        categoryImage.setImage(with: categoryItem.image)
        
     }
-    
-    
-//    func fillPokemonsData(pokName : String, pokID: String) {
-//        pokNameLable.text = "#\(pokID). \(pokName)"
-//        pokImage.kf.setImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(pokID).png"), placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil
-//        )
-//    }
-    
-    
-    
     
 }
 

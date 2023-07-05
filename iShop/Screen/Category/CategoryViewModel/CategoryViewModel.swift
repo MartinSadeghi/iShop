@@ -8,23 +8,58 @@
 import Foundation
 
 
-class CategoryViewModel {
+final class CategoryViewModel {
     
-    private var categories: [CategoryModel] = []
+    // MARK:  - Variables
     
-//    func fetchCategories() {
-//        // Simulated data fetch
-//        categories = [
-//            CategoryModel(title: "Kylo", image: nil),
-//            CategoryModel(title: "Cooper", image: nil)
-//        ]
-//    }
+     var categories = [CategoryModel]()
     
-    func numberOfCategories() -> Int {
-        return categories.count
-    }
     
-    func category(at index: Int) -> CategoryModel {
-        return categories[index]
+    // MARK:  - typealias
+    var eventHandler: ((_ event: Event) -> Void)?
+    
+    
+    
+    
+    // MARK:  - Methods
+    
+    func fetchCategory() {
+        self.eventHandler?(.loading)
+        APIManager.shared.request(
+            modelType: CategoryModel.self,
+            type: CategoryEndPoint.category) { response in
+                self.eventHandler?(.stopLoading)
+                switch response {
+                case .success(let categories):
+                    self.categories.append(categories)
+                    print(categories)
+                    self.eventHandler?(.dataLoaded)
+                case .failure(let error):
+                    self.eventHandler?(.error(error))
+                }
+            }
     }
 }
+
+
+    // MARK:  - Extension
+extension CategoryViewModel {
+    
+    
+    // MARK:  - Enums
+    
+    enum Event {
+        case loading
+        case stopLoading
+        case dataLoaded
+        case error(Error?)
+    }
+}
+
+
+
+
+
+
+    
+
