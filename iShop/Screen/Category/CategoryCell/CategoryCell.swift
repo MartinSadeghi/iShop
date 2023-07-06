@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoryCell: UITableViewCell {
-
+    
     
     
     
@@ -43,13 +43,25 @@ class CategoryCell: UITableViewCell {
             categoryCellDetailsConfiguration()
         }
     }
+  
     
-//    var categoryFakeItem: CategoryModelFake? {
-//        didSet {
-//            categoryCellDetailsConfiguration()
-//        }
-//    }
     
+    //MARK: -   Methods
+    
+    /// Filling Cell Data
+    func categoryCellDetailsConfiguration() {
+        guard let categoryItem else { return }
+//        print(categoryItem)
+        categoryNameLable.text = categoryItem.first
+    }
+    
+    
+    /// Collecting all of Constraints
+    private func CollectingElementsConstraints() {
+        categoryImageConstraint()
+        categoryNameLableConstraint()
+        categoryDisclosureImageConstraint()
+    }
     
     
     
@@ -79,7 +91,7 @@ class CategoryCell: UITableViewCell {
     
     /// Creating Category NameLable Cell
     private lazy var categoryDisclosure : UIImageView = {
-       let image                        = UIImageView()
+        let image                        = UIImageView()
         image.clipsToBounds             = false
         image.contentMode               = .scaleAspectFit
         image.layer.cornerRadius        = (image.frame.size.width ) / 2
@@ -88,62 +100,43 @@ class CategoryCell: UITableViewCell {
     }()
     
     
-    /// Collecting all of Constraints
-    private func CollectingElementsConstraints() {
-        categoryImageConstraint()
-        categoryNameLableConstraint()
-        categoryDisclosureImageConstraint()
-    }
-    
-   
+}
+
+
+// MARK:  - Constraints setup
+
+extension CategoryCell {
     /// Set CategoryImage Constraint
     private func categoryImageConstraint() {
-
+        
         categoryImage.translatesAutoresizingMaskIntoConstraints = false
         categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         categoryImage.widthAnchor.constraint(lessThanOrEqualTo: categoryImage.heightAnchor).isActive = true
     }
-
+    
     /// Set CategoryNameLable Constraint
     private func categoryNameLableConstraint() {
-
+        
         categoryNameLable.translatesAutoresizingMaskIntoConstraints = false
         categoryNameLable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryNameLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryNameLable.leadingAnchor.constraint(equalTo: categoryImage.trailingAnchor, constant: 10).isActive = true
     }
-
-
+    
+    
     /// Set CategoryDisclosureImage Constraint
     private func categoryDisclosureImageConstraint() {
-
+        
         categoryDisclosure.translatesAutoresizingMaskIntoConstraints = false
         categoryDisclosure.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         categoryDisclosure.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         categoryDisclosure.leadingAnchor.constraint(equalTo: categoryNameLable.trailingAnchor, constant: 5).isActive = true
         categoryDisclosure.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
     }
-
-    
-    //MARK: -   Methods
-    
-    /// Filling Cell Data
-    
-    func categoryCellDetailsConfiguration() {
-
-//        categoryNameLable.text = categoryFakeItem.title
-        guard let categoryItem else { return }
-        print(categoryItem)
-        categoryNameLable.text = categoryItem.first
-        
-//        categoryImage.image = UIImage(named: "plus.app")
-//        categoryImage.setImage(with: categoryItem.image)
-       
-    }
-    
 }
+
 
 
 

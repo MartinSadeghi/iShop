@@ -21,7 +21,7 @@ struct ProductModel : Codable {
 struct Product: Codable {
     let id                 : Int
     let title              : String
-    let productDescription : String
+    let description        : String
     let price              : Int
     let discountPercentage : Double
     let rating             : Double
@@ -31,3 +31,4 @@ struct Product: Codable {
     let thumbnail          : String
     let images             : [String]
 }
+

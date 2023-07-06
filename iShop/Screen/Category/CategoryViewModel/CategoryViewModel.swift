@@ -12,8 +12,9 @@ final class CategoryViewModel {
     
     // MARK:  - Variables
     
-     var categories = [CategoryModel]()
-    
+       var categories = CategoryModel()
+
+
     
     // MARK:  - typealias
     var eventHandler: ((_ event: Event) -> Void)?
@@ -31,8 +32,8 @@ final class CategoryViewModel {
                 self.eventHandler?(.stopLoading)
                 switch response {
                 case .success(let categories):
-                    self.categories.append(categories)
-                    print(categories)
+                    self.categories = categories
+//                    print(categories)
                     self.eventHandler?(.dataLoaded)
                 case .failure(let error):
                     self.eventHandler?(.error(error))

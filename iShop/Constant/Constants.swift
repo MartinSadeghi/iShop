@@ -20,6 +20,7 @@ enum Constants {
     
 //    Cell Identifiers
         static let categoryCellIdentifier = "CategoryCell"
+    static let productCellIdentifier = "ProductCell"
         static let saveCellIdentifier     = "SaveCell"
     
     

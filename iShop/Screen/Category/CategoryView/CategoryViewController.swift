@@ -91,12 +91,16 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
         let categoryItems = categoryViewModel.categories[indexPath.row]
-        cell.categoryItem = categoryItems
+        cell.categoryItem = [categoryItems]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedRow = indexPath.row
+        let selectedData = categoryViewModel.categories[selectedRow]
+        print(selectedData)
+
     }
     
 }

@@ -11,6 +11,14 @@ import Foundation
 
 typealias CategoryModel = [String]
 
+//struct CategoryItemsModel: Codable {
+//    let items: [CategoryItemModel]
+//}
+//
+//struct CategoryItemModel: Codable {
+//    let itemName: String
+//}
+
 //struct CategoryModel: Codable {
 //    let categories: String
 //}
