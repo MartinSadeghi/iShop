@@ -25,7 +25,8 @@ class ProductCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(productImage)
         contentView.addSubview(productDetailsStackView)
-        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
+//        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
+        contentView.backgroundColor = UIColor(named: "ProductCellContentColor")
     }
     
     /// Required Cell NSCoder
@@ -57,9 +58,9 @@ class ProductCell: UITableViewCell {
     private func collectedElementsConstraints() {
         configureProductDetailsStackView()
         productImageConstraint()
-        productTitleLableConstraint()
-        productPriceLableConstraint()
-        productRatingLableConstraint()
+//        productTitleLableConstraint()
+//        productPriceLableConstraint()
+//        productRatingLableConstraint()
     }
     
     
@@ -77,6 +78,12 @@ class ProductCell: UITableViewCell {
     }()
     
     
+    private lazy var productDetailsStackView : UIStackView = {
+        let stackView                        = UIStackView()
+        stackView.backgroundColor            = .blue
+        return stackView
+    }()
+    
     
     /// Creating productTitleLable Cell
     private lazy var productTitleLable : UILabel = {
@@ -84,35 +91,32 @@ class ProductCell: UITableViewCell {
         lable.textColor                = .white
         lable.textAlignment            = .left
         lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
+        lable.text = "sdfbvcsacdvfbgdvsc"
         return lable
     }()
     
     
     /// Creating productPriceLable Cell
-    private lazy var productPriceLable : UIImageView = {
-        let image                      = UIImageView()
-        image.clipsToBounds            = false
-        image.contentMode              = .scaleAspectFit
-        image.layer.cornerRadius       = (image.frame.size.width ) / 2
-        image.image                    = UIImage(systemName: "chevron.right")
-        return image
+    private lazy var productPriceLable : UILabel = {
+        let lable                      = UILabel()
+        lable.textColor                = .white
+        lable.textAlignment            = .left
+        lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
+        lable.text = "23456789876543"
+        return lable
     }()
     
     /// Creating productRatingLable Cell
-    private lazy var productRatingLable : UIImageView = {
-        let image                       = UIImageView()
-        image.clipsToBounds             = false
-        image.contentMode               = .scaleAspectFit
-        image.layer.cornerRadius        = (image.frame.size.width ) / 2
-        image.image                     = UIImage(systemName: "chevron.right")
-        return image
+    private lazy var productRatingLable : UILabel = {
+        let lable                      = UILabel()
+        lable.textColor                = .white
+        lable.textAlignment            = .left
+        lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
+        lable.text = "22222222222"
+        return lable
     }()
     
-    private lazy var productDetailsStackView : UIStackView = {
-        let stackView                        = UIStackView()
-        stackView.backgroundColor            = .blue
-        return stackView
-    }()
+    
 
     
     
@@ -123,6 +127,16 @@ class ProductCell: UITableViewCell {
 
 extension ProductCell {
     
+    
+    /// Set productImage Constraint
+    private func productImageConstraint() {
+        
+        productImage.translatesAutoresizingMaskIntoConstraints = false
+        productImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        productImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        productImage.widthAnchor.constraint(lessThanOrEqualTo: productImage.heightAnchor).isActive = true
+    }
     
     /// Set productDetailsStackView Constraint
     private func productDetailsStackViewConstraint() {
@@ -152,15 +166,7 @@ extension ProductCell {
         productDetailsStackView.addArrangedSubview(productRatingLable)
     }
     
-    /// Set productImage Constraint
-    private func productImageConstraint() {
-        
-        productImage.translatesAutoresizingMaskIntoConstraints = false
-        productImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        productImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        productImage.widthAnchor.constraint(lessThanOrEqualTo: productImage.heightAnchor).isActive = true
-    }
+   
     
     /// Set productTitleLable Constraint
     private func productTitleLableConstraint() {

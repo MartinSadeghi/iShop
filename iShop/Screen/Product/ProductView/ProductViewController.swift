@@ -34,14 +34,18 @@ class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = UIColor(named: "ProductVCBackground")
+        configureTableView()
         guard let selectedCategory else { return }
         print(selectedCategory)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        }
     
-    
-    
+
     
     
     // MARK:  -    UI Outlets
@@ -50,7 +54,7 @@ class ProductViewController: UIViewController {
     private lazy var productTableView : UITableView = {
         let table             = UITableView()
         table.register(ProductCell.self, forCellReuseIdentifier: Constants.productCellIdentifier)
-        table.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
+//        table.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
         return table
     }()
     
