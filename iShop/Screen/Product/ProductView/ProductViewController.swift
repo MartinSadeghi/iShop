@@ -14,11 +14,11 @@ class ProductViewController: UIViewController {
     
     var products = [ProductModel]()
     
-    var selectedCategory: ProductModel!
+    var selectedCategory: Product?
     
     // MARK:  - Initialization
     
-    init(product: ProductModel) {
+    init(product: Product) {
         super.init(nibName: nil, bundle: nil)
         self.selectedCategory = product
     }
@@ -31,8 +31,13 @@ class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        guard let selectedCategory else { return }
+        print(selectedCategory)
     }
+    
+    
+    
+    
     
     
     // MARK:  -    UI Outlets
@@ -56,7 +61,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.productCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
         let categoryItems = products[indexPath.row]
 //        cell.categoryItem = categoryItems
         return cell
@@ -65,6 +70,9 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    
     
 }
 

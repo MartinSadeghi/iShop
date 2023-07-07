@@ -18,7 +18,7 @@ class CategoryCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = 15
-        CollectingElementsConstraints()
+        collectingElementsConstraints()
         
     }
     
@@ -57,7 +57,7 @@ class CategoryCell: UITableViewCell {
     
     
     /// Collecting all of Constraints
-    private func CollectingElementsConstraints() {
+    private func collectingElementsConstraints() {
         categoryImageConstraint()
         categoryNameLableConstraint()
         categoryDisclosureImageConstraint()
