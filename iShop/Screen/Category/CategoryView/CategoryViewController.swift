@@ -32,6 +32,8 @@ class CategoryViewController: UIViewController {
         view.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
         initCategoryViewModel()
         configureTableView()
+//        let navigationController = UINavigationController(rootViewController: self)
+//         navigationController = navigationController
     }
     
     
@@ -97,15 +99,13 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         let selectedRow = indexPath.row
         let productViewController = ProductViewController(product: Product(id: selectedRow, title: "", description: "", price: selectedRow, discountPercentage: Double(selectedRow), rating: Double(selectedRow), stock: selectedRow, brand: "", category: categoryViewModel.categories[selectedRow], thumbnail: "", images: []))
-        self.present(productViewController, animated: true)
+        navigationController?.pushViewController(productViewController, animated: true)
         let selectedData = categoryViewModel.categories[selectedRow]
         print(selectedData)
-        
     }
-    
-    
 }
 
 

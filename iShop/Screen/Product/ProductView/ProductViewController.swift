@@ -12,7 +12,10 @@ class ProductViewController: UIViewController {
     
     // MARK:  - Variables
     
-    var products = [ProductModel]()
+    var products : [CategoryModelFake] = [
+        CategoryModelFake(title: "Kylo")
+
+    ]
     
     var selectedCategory: Product?
     
@@ -31,6 +34,7 @@ class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .cyan
         guard let selectedCategory else { return }
         print(selectedCategory)
     }
@@ -45,14 +49,14 @@ class ProductViewController: UIViewController {
     /// Creating ProductTableViewl
     private lazy var productTableView : UITableView = {
         let table             = UITableView()
-        table.register(CategoryCell.self, forCellReuseIdentifier: Constants.productCellIdentifier)
+        table.register(ProductCell.self, forCellReuseIdentifier: Constants.productCellIdentifier)
         table.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
         return table
     }()
     
 }
 
-// MARK:  - CategoryTableView required protocols
+// MARK:  - ProductTableView required protocols
 
 extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -61,8 +65,8 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.productCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
-        let categoryItems = products[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.productCellIdentifier, for: indexPath) as? ProductCell else { return UITableViewCell() }
+//        let categoryItems = products[indexPath.row]
 //        cell.categoryItem = categoryItems
         return cell
     }
@@ -71,13 +75,22 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    /// TableViewCell Height
+    /// - Parameters:
+    ///   - tableView: Product TableView
+    ///   - indexPath: Each row
+    /// - Returns: Height for each row
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
     
     
     
 }
 
 
-// MARK:  - CategoryTableView setups
+// MARK:  - ProductTableView setups
 
 extension ProductViewController {
     
@@ -86,13 +99,13 @@ extension ProductViewController {
     func configureTableView() {
         productTableView.delegate   = self
         productTableView.dataSource = self
-//        setupCategoryTableViewConstraint()
+        setupProductTableViewConstraint()
     }
     
     
     
-    /// setup CategoryTableViewConstraint
-    private func setupCategoryTableViewConstraint() {
+    /// setup ProductTableViewConstraint
+    private func setupProductTableViewConstraint() {
         view.addSubview(productTableView)
         productTableView.translatesAutoresizingMaskIntoConstraints = false
         productTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
