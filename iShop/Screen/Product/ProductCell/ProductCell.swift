@@ -72,15 +72,18 @@ class ProductCell: UITableViewCell {
         let image                 = UIImageView()
         image.clipsToBounds       = false
         image.contentMode         = .scaleAspectFit
-        image.layer.cornerRadius  = (image.frame.size.width ) / 2
+        image.layer.cornerRadius  = 7
         image.image               = UIImage(systemName: "iphone.gen1")
+        image.backgroundColor = UIColor(named: "ProductImageBackgroundColor")
         return image
     }()
     
     
     private lazy var productDetailsStackView : UIStackView = {
         let stackView                        = UIStackView()
-        stackView.backgroundColor            = .blue
+        stackView.backgroundColor            = UIColor(named: "ProductCellDetailsStackView")
+        stackView.layer.cornerRadius = 5
+        stackView.clipsToBounds = false
         return stackView
     }()
     
@@ -91,7 +94,7 @@ class ProductCell: UITableViewCell {
         lable.textColor                = .white
         lable.textAlignment            = .left
         lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
-        lable.text = "sdfbvcsacdvfbgdvsc"
+        lable.text = "sdfbvcsacdvfbgdwegy654evsc"
         return lable
     }()
     
@@ -135,7 +138,7 @@ extension ProductCell {
         productImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         productImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        productImage.widthAnchor.constraint(lessThanOrEqualTo: productImage.heightAnchor).isActive = true
+        productImage.widthAnchor.constraint(greaterThanOrEqualTo: productImage.heightAnchor).isActive = true
     }
     
     /// Set productDetailsStackView Constraint
@@ -143,8 +146,8 @@ extension ProductCell {
         productDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
         productDetailsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         productDetailsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-        productDetailsStackView.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 20).isActive = true
-        productDetailsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        productDetailsStackView.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 10).isActive = true
+        productDetailsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
 
     }
     
