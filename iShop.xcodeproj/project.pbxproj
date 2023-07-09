@@ -41,6 +41,7 @@
 		6B9037702A56F38500DF2766 /* ProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90376F2A56F38500DF2766 /* ProductCellView.swift */; };
 		6B9037722A56F39700DF2766 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9037712A56F39700DF2766 /* ProductCellViewModel.swift */; };
 		6B9037742A56F3B200DF2766 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9037732A56F3B200DF2766 /* ProductCell.swift */; };
+		6B9037772A5AC4FC00DF2766 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B9037762A5AC4FC00DF2766 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9037772A5AC4FC00DF2766 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +372,9 @@
 			dependencies = (
 			);
 			name = iShop;
+			packageProductDependencies = (
+				6B9037762A5AC4FC00DF2766 /* Kingfisher */,
+			);
 			productName = iShop;
 			productReference = 6B6637AF2A4C9485004229C6 /* iShop.app */;
 			productType = "com.apple.product-type.application";
@@ -442,6 +447,9 @@
 				Base,
 			);
 			mainGroup = 6B6637A62A4C9484004229C6;
+			packageReferences = (
+				6B9037752A5AC4FC00DF2766 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 6B6637B02A4C9485004229C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -846,6 +854,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6B9037752A5AC4FC00DF2766 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B9037762A5AC4FC00DF2766 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B9037752A5AC4FC00DF2766 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6B6637BB2A4C9485004229C6 /* iShop.xcdatamodeld */ = {
