@@ -93,8 +93,9 @@ class ProductCell: UITableViewCell {
         let lable                      = UILabel()
         lable.textColor                = .white
         lable.textAlignment            = .left
+        lable.numberOfLines            = 2
         lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
-        lable.text = "sdfbvcsacdvfbgdwegy654evsc"
+        lable.text = "sdfbvcsacdvfsdvfbgntrevdcsaxbgdwegy654evsc"
         return lable
     }()
     
