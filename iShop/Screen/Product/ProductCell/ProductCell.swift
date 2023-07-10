@@ -10,6 +10,15 @@ import UIKit
 class ProductCell: UITableViewCell {
 
     
+        // MARK:  - Variables
+    
+    /// property observer for the setting up the Product Cell details
+    var productItem : ProductModel? {
+        didSet {
+            configureProductDetailsStackView()
+        }
+    }
+    
     //MARK: - Application LifeCycle
     
     /// Layout SubViews
@@ -35,12 +44,7 @@ class ProductCell: UITableViewCell {
     }
     
     
-    /// property observer for the setting up the cell details
-    var categoryItem: CategoryModel? {
-        didSet {
-            productCellDetailsConfiguration()
-        }
-    }
+
   
     
     
@@ -120,6 +124,25 @@ class ProductCell: UITableViewCell {
         return lable
     }()
     
+    /// Creating productRatingButton Cell
+    private lazy var productRatingButton : UIButton = {
+        let button                       = UIButton()
+        button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        button.titleLabel?.text          = "3.9"
+        button.backgroundColor           = .systemYellow
+        button.titleLabel?.font          = UIFont(name:"Chalkboard SE", size: 15)
+        return button
+    }()
+    
+    
+    /// Creating productBuyButton Cell
+    private lazy var productBuyButton : UIButton = {
+        let button                      = UIButton()
+        button.titleLabel?.text = "Buy"
+        button.backgroundColor = .systemYellow
+        button.titleLabel?.font = UIFont(name:"Chalkboard SE", size: 15)
+        return button
+    }()
     
 
     
@@ -156,7 +179,7 @@ extension ProductCell {
     private func configureProductDetailsStackView() {
         contentView.addSubview(productDetailsStackView)
         productDetailsStackView.axis = .vertical
-        productDetailsStackView.distribution = .fill
+        productDetailsStackView.distribution = .fillEqually
         productDetailsStackView.spacing = 10
         productDetailsStackViewConstraint()
         productDetailsElementsToProductDetailsStackView()
@@ -168,6 +191,9 @@ extension ProductCell {
         productDetailsStackView.addArrangedSubview(productTitleLable)
         productDetailsStackView.addArrangedSubview(productPriceLable)
         productDetailsStackView.addArrangedSubview(productRatingLable)
+        productDetailsStackView.addArrangedSubview(productRatingButton)
+        productDetailsStackView.addArrangedSubview(productBuyButton)
+
     }
     
    
