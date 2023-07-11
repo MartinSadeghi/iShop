@@ -13,7 +13,7 @@ class ProductCell: UITableViewCell {
         // MARK:  - Variables
     
     /// property observer for the setting up the Product Cell details
-    var productItem : ProductModel? {
+    var productItem : Product? {
         didSet {
             configureProductDetailsStackView()
         }
@@ -52,7 +52,9 @@ class ProductCell: UITableViewCell {
     
     /// Filling Cell Data
     func productCellDetailsConfiguration() {
-//        guard let categoryItem else { return }
+        guard let productItem else { return }
+        productTitleLable.text = productItem.title
+
 //        print(categoryItem)
 //        categoryNameLable.text = categoryItem.first
     }

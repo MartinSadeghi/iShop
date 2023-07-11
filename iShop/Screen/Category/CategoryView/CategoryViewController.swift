@@ -32,8 +32,6 @@ class CategoryViewController: UIViewController {
         view.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
         initCategoryViewModel()
         configureTableView()
-//        let navigationController = UINavigationController(rootViewController: self)
-//         navigationController = navigationController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +107,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         let productViewController = ProductViewController(product: Product(id: selectedRow, title: "", description: "", price: selectedRow, discountPercentage: Double(selectedRow), rating: Double(selectedRow), stock: selectedRow, brand: "", category: categoryViewModel.categories[selectedRow], thumbnail: "", images: []))
         navigationController?.pushViewController(productViewController, animated: true)
         let selectedData = categoryViewModel.categories[selectedRow]
-        print(selectedData)
+        print("selectedData from CategoryVC \(selectedData)")
     }
 }
 

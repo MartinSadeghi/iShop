@@ -12,9 +12,11 @@ class ProductViewController: UIViewController {
     
     // MARK:  - Variables
     
-    var products : [CategoryModelFake] = [
-        CategoryModelFake(title: "Kylo")
+    var productList : ProductList?
 
+    
+    var fakeProducts : [CategoryModelFake] = [
+        CategoryModelFake(title: "Kylo")
     ]
     
     var selectedCategory: Product?
@@ -36,8 +38,9 @@ class ProductViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "ProductVCBackground")
         configureTableView()
-        guard let selectedCategory else { return }
-        print(selectedCategory)
+        fetchProduct()
+//        guard let selectedCategory else { return }
+//        print(selectedCategory)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +48,17 @@ class ProductViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         }
     
+    
+    func fetchProduct() {
+        APIManager.shared.request(modelType: ProductList.self, type: ProductEndPoint.product(name: selectedCategory?.category ?? "")) { response in
+            switch response {
+            case.success(let product):
+                print(product)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     
     
@@ -65,13 +79,15 @@ class ProductViewController: UIViewController {
 extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        products.count
+        productList?.products.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.productCellIdentifier, for: indexPath) as? ProductCell else { return UITableViewCell() }
-//        let categoryItems = products[indexPath.row]
-//        cell.categoryItem = categoryItems
+        if let productCell = productList?.products[indexPath.row] {
+            print(productCell)
+            cell.productItem = productCell
+        }
         return cell
     }
     
