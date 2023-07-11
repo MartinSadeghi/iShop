@@ -13,13 +13,8 @@ class ProductViewController: UIViewController {
     // MARK:  - Variables
     
     var productList : ProductList?
-
-    
-    var fakeProducts : [CategoryModelFake] = [
-        CategoryModelFake(title: "Kylo")
-    ]
-    
     var selectedCategory: Product?
+    
     
     // MARK:  - Initialization
     
@@ -31,6 +26,7 @@ class ProductViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     // MARK:  - Application Lifecycle
     
@@ -46,6 +42,7 @@ class ProductViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        navigationItem.title = selectedCategory?.category
         }
     
     
@@ -53,7 +50,11 @@ class ProductViewController: UIViewController {
         APIManager.shared.request(modelType: ProductList.self, type: ProductEndPoint.product(name: selectedCategory?.category ?? "")) { response in
             switch response {
             case.success(let product):
-                print(product)
+                DispatchQueue.main.async {
+                    self.productList = product
+                    self.productTableView.reloadData()
+                }
+//                print(product)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -85,7 +86,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.productCellIdentifier, for: indexPath) as? ProductCell else { return UITableViewCell() }
         if let productCell = productList?.products[indexPath.row] {
-            print(productCell)
+//            print(productCell)
             cell.productItem = productCell
         }
         return cell

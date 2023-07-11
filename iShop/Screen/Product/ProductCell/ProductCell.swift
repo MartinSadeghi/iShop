@@ -15,7 +15,7 @@ class ProductCell: UITableViewCell {
     /// property observer for the setting up the Product Cell details
     var productItem : Product? {
         didSet {
-            configureProductDetailsStackView()
+            productCellDetailsConfiguration()
         }
     }
     
@@ -34,7 +34,6 @@ class ProductCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(productImage)
         contentView.addSubview(productDetailsStackView)
-//        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
         contentView.backgroundColor = UIColor(named: "ProductCellContentColor")
     }
     
@@ -53,10 +52,13 @@ class ProductCell: UITableViewCell {
     /// Filling Cell Data
     func productCellDetailsConfiguration() {
         guard let productItem else { return }
+//      print("productItem from ProductVC\(productItem)")
+        guard let imageURL = productItem.images.first else { return }
+        productImage.setImage(with: imageURL)
         productTitleLable.text = productItem.title
-
-//        print(categoryItem)
-//        categoryNameLable.text = categoryItem.first
+        productPriceLable.text = "$ \(productItem.price)"
+        productRatingButton.setTitle(" \(productItem.rating)", for: .normal)
+        productBuyButton.setTitle("BUY", for: .normal)
     }
     
     
@@ -64,6 +66,7 @@ class ProductCell: UITableViewCell {
     private func collectedElementsConstraints() {
         configureProductDetailsStackView()
         productImageConstraint()
+        
 //        productTitleLableConstraint()
 //        productPriceLableConstraint()
 //        productRatingLableConstraint()
@@ -79,8 +82,6 @@ class ProductCell: UITableViewCell {
         image.clipsToBounds       = false
         image.contentMode         = .scaleAspectFit
         image.layer.cornerRadius  = 7
-        image.image               = UIImage(systemName: "iphone.gen1")
-        image.backgroundColor = UIColor(named: "ProductImageBackgroundColor")
         return image
     }()
     
@@ -101,7 +102,6 @@ class ProductCell: UITableViewCell {
         lable.textAlignment            = .left
         lable.numberOfLines            = 2
         lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
-        lable.text = "sdfbvcsacdvfsdvfbgntrevdcsaxbgdwegy654evsc"
         return lable
     }()
     
@@ -112,7 +112,6 @@ class ProductCell: UITableViewCell {
         lable.textColor                = .white
         lable.textAlignment            = .left
         lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
-        lable.text = "23456789876543"
         return lable
     }()
     
@@ -122,7 +121,6 @@ class ProductCell: UITableViewCell {
         lable.textColor                = .white
         lable.textAlignment            = .left
         lable.font                     = UIFont(name:"Chalkboard SE", size: 15)
-        lable.text = "22222222222"
         return lable
     }()
     
@@ -130,8 +128,10 @@ class ProductCell: UITableViewCell {
     private lazy var productRatingButton : UIButton = {
         let button                       = UIButton()
         button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        button.titleLabel?.text          = "3.9"
-        button.backgroundColor           = .systemYellow
+        button.setTitleColor(.systemYellow, for: .normal)
+        button.backgroundColor           = .blue
+        button.layer.cornerRadius = 7
+        button.isEnabled = false
         button.titleLabel?.font          = UIFont(name:"Chalkboard SE", size: 15)
         return button
     }()
@@ -141,8 +141,9 @@ class ProductCell: UITableViewCell {
     private lazy var productBuyButton : UIButton = {
         let button                      = UIButton()
         button.titleLabel?.text = "Buy"
-        button.backgroundColor = .systemYellow
+        button.backgroundColor = .systemBlue
         button.titleLabel?.font = UIFont(name:"Chalkboard SE", size: 15)
+        button.layer.cornerRadius = 7
         return button
     }()
     
@@ -164,11 +165,12 @@ extension ProductCell {
         productImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         productImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        productImage.widthAnchor.constraint(greaterThanOrEqualTo: productImage.heightAnchor).isActive = true
+        productImage.widthAnchor.constraint(equalTo: productImage.heightAnchor).isActive = true
     }
     
     /// Set productDetailsStackView Constraint
     private func productDetailsStackViewConstraint() {
+        
         productDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
         productDetailsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         productDetailsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
