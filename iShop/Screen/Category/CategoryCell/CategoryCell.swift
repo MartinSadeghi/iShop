@@ -28,7 +28,7 @@ class CategoryCell: UITableViewCell {
         contentView.addSubview(categoryImage)
         contentView.addSubview(categoryNameLable)
         contentView.addSubview(categoryDisclosure)
-        contentView.backgroundColor = UIColor(named: "CategoryCellContentColor")
+        contentView.backgroundColor = UIColor.categoryCellContentColor
     }
     
     /// Required Cell NSCoder

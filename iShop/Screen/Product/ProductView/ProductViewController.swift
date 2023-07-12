@@ -12,15 +12,15 @@ class ProductViewController: UIViewController {
     
     // MARK:  - Variables
     
-    var productList : ProductList?
-    var selectedCategory: Product?
+    private var productViewModel = ProductViewModel()
+
     
     
     // MARK:  - Initialization
     
     init(product: Product) {
         super.init(nibName: nil, bundle: nil)
-        self.selectedCategory = product
+        self.productViewModel.selectedCategory = product
     }
     
     required init?(coder: NSCoder) {
@@ -32,34 +32,55 @@ class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "ProductVCBackground")
+        view.backgroundColor = UIColor.productVCBackgroundColor
         configureTableView()
-        fetchProduct()
-//        guard let selectedCategory else { return }
-//        print(selectedCategory)
+        initProductViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        navigationItem.title = selectedCategory?.category
+        navigationItem.title = productViewModel.selectedCategory?.category
         }
     
     
-    func fetchProduct() {
-        APIManager.shared.request(modelType: ProductList.self, type: ProductEndPoint.product(name: selectedCategory?.category ?? "")) { response in
-            switch response {
-            case.success(let product):
+    private func initProductViewModel() {
+        observeEventsForProducts()
+        productViewModel.fetchProducts()
+    }
+    
+    private func observeEventsForProducts() {
+        productViewModel.eventHandler = {
+            [weak self] event in
+            switch event {
+            case .loading:
+                print("Data is loading...!")
+            case .stopLoading:
+                print("Stop loading...!")
+            case .dataLoaded:
                 DispatchQueue.main.async {
-                    self.productList = product
-                    self.productTableView.reloadData()
+                    self?.productTableView.reloadData()
                 }
-//                print(product)
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .error(let error):
+                print(error?.localizedDescription as Any)
             }
         }
     }
+    
+//    func fetchProduct() {
+//        APIManager.shared.request(modelType: ProductList.self, type: ProductEndPoint.product(name: selectedCategory?.category ?? "")) { response in
+//            switch response {
+//            case.success(let product):
+//                DispatchQueue.main.async {
+//                    self.productList = product
+//                    self.productTableView.reloadData()
+//                }
+////                print(product)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
 
     
     
@@ -80,12 +101,13 @@ class ProductViewController: UIViewController {
 extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        productList?.products.count ?? 0
+        productViewModel.productList?.products.count ?? 0
+//        productList?.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.productCellIdentifier, for: indexPath) as? ProductCell else { return UITableViewCell() }
-        if let productCell = productList?.products[indexPath.row] {
+        if let productCell = productViewModel.productList?.products[indexPath.row] {
 //            print(productCell)
             cell.productItem = productCell
         }

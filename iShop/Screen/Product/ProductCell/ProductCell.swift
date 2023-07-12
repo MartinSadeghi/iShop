@@ -34,7 +34,7 @@ class ProductCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(productImage)
         contentView.addSubview(productDetailsStackView)
-        contentView.backgroundColor = UIColor(named: "ProductCellContentColor")
+        contentView.backgroundColor = UIColor.productCellContentColor
     }
     
     /// Required Cell NSCoder
@@ -88,7 +88,7 @@ class ProductCell: UITableViewCell {
     
     private lazy var productDetailsStackView : UIStackView = {
         let stackView                        = UIStackView()
-        stackView.backgroundColor            = UIColor(named: "ProductCellDetailsStackView")
+        stackView.backgroundColor            = UIColor.productCellDetailsStackViewColor
         stackView.layer.cornerRadius = 5
         stackView.clipsToBounds = false
         return stackView

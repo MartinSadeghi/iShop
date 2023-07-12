@@ -12,8 +12,13 @@ final class CategoryViewModel {
     
     // MARK:  - Variables
     
-       var categories = CategoryModel()
-
+    var categories: CategoryModel?
+    
+    var categoriesFake : [CategoryModelFake] = [
+        CategoryModelFake(title: "Kylo")
+        //        CategoryModel(title: "Cooper"),
+        //        CategoryModel(title: "Miely")
+    ]
 
     
     // MARK:  - typealias
@@ -24,7 +29,7 @@ final class CategoryViewModel {
     
     // MARK:  - Methods
     
-    func fetchCategory() {
+    func fetchCategories() {
         self.eventHandler?(.loading)
         APIManager.shared.request(
             modelType: CategoryModel.self,

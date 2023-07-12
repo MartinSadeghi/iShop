@@ -14,24 +14,14 @@ class CategoryViewController: UIViewController {
     
     private var categoryViewModel = CategoryViewModel()
     
-    var categoriesFake : [CategoryModelFake] = [
-        CategoryModelFake(title: "Kylo")
-        //        CategoryModel(title: "Cooper"),
-        //        CategoryModel(title: "Miely")
-    ]
-    
-   
-    
-    
-    
     
     // MARK:  - Application Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
-        initCategoryViewModel()
+        view.backgroundColor = UIColor.categoryVCBackgroundColor
         configureTableView()
+        initCategoryViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,11 +34,13 @@ class CategoryViewController: UIViewController {
     
     // MARK:  - Methods
     
+    /// Setup initializations of the CategoryViewModel
     private func initCategoryViewModel() {
         observeEventsForCategories()
-        categoryViewModel.fetchCategory()
+        categoryViewModel.fetchCategories()
     }
     
+    /// Observing the states of the Networking
     private func observeEventsForCategories() {
         categoryViewModel.eventHandler = { [weak self] event in
             switch event {
@@ -66,18 +58,17 @@ class CategoryViewController: UIViewController {
             case .error(let error):
                 print(error?.localizedDescription as Any)
             }
-            
         }
     }
 
   
     // MARK:  -    UI Outlets
     
-    /// Creating CategoryTableViewl
+    /// Creating CategoryTableView
     private lazy var categoryTableView : UITableView = {
         let table             = UITableView()
         table.register(CategoryCell.self, forCellReuseIdentifier: Constants.categoryCellIdentifier)
-        table.backgroundColor = UIColor(named: "CategoryVCBackgroundColor")
+        table.backgroundColor = UIColor.categoryVCBackgroundColor
         return table
     }()
     
@@ -90,12 +81,12 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        categoryViewModel.categories.count
+        categoryViewModel.categories?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
-        let categoryItems = categoryViewModel.categories[indexPath.row]
+        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
         cell.categoryItem = [categoryItems]
         return cell
     }
@@ -104,10 +95,10 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let selectedRow = indexPath.row
-        let productViewController = ProductViewController(product: Product(id: selectedRow, title: "", description: "", price: selectedRow, discountPercentage: Double(selectedRow), rating: Double(selectedRow), stock: selectedRow, brand: "", category: categoryViewModel.categories[selectedRow], thumbnail: "", images: []))
+        let productViewController = ProductViewController(product: Product(id: selectedRow, title: "", description: "", price: selectedRow, discountPercentage: Double(selectedRow), rating: Double(selectedRow), stock: selectedRow, brand: "", category: categoryViewModel.categories?[selectedRow] ?? "", thumbnail: "", images: []))
         navigationController?.pushViewController(productViewController, animated: true)
-        let selectedData = categoryViewModel.categories[selectedRow]
-        print("selectedData from CategoryVC \(selectedData)")
+        let selectedData = categoryViewModel.categories?[selectedRow]
+        print("selectedData from CategoryVC \(selectedData ?? "Error by selectingRow")")
     }
 }
 
@@ -117,7 +108,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
 extension CategoryViewController {
     
     
-    ///  Configuration for TableView
+    ///  Configuration for CategoryTableView
     func configureTableView() {
         categoryTableView.delegate   = self
         categoryTableView.dataSource = self
@@ -126,7 +117,7 @@ extension CategoryViewController {
     
     
     
-    /// setup CategoryTableViewConstraint
+    /// Setup CategoryTableViewConstraint
     private func setupCategoryTableViewConstraint() {
         view.addSubview(categoryTableView)
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
