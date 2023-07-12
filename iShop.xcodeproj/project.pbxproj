@@ -45,6 +45,11 @@
 		6B9037792A5D663800DF2766 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9037782A5D663800DF2766 /* UIImageView + Extension.swift */; };
 		6B90377B2A5DA70400DF2766 /* UIColor + Extentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90377A2A5DA70400DF2766 /* UIColor + Extentsion.swift */; };
 		6B90377D2A5DC3BB00DF2766 /* APIManagerAsyncAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90377C2A5DC3BB00DF2766 /* APIManagerAsyncAwait.swift */; };
+		6B9037832A5EA9B300DF2766 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9037822A5EA9B300DF2766 /* DetailModel.swift */; };
+		6B9037872A5EA9FB00DF2766 /* DetailCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9037862A5EA9FB00DF2766 /* DetailCustomView.swift */; };
+		6B9037892A5EAA1800DF2766 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9037882A5EAA1800DF2766 /* DetailViewModel.swift */; };
+		6B90378C2A5EAF0400DF2766 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90378A2A5EAF0400DF2766 /* DetailViewController.swift */; };
+		6B90378D2A5EAF0400DF2766 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B90378B2A5EAF0400DF2766 /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +111,11 @@
 		6B9037782A5D663800DF2766 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		6B90377A2A5DA70400DF2766 /* UIColor + Extentsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extentsion.swift"; sourceTree = "<group>"; };
 		6B90377C2A5DC3BB00DF2766 /* APIManagerAsyncAwait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerAsyncAwait.swift; sourceTree = "<group>"; };
+		6B9037822A5EA9B300DF2766 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		6B9037862A5EA9FB00DF2766 /* DetailCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCustomView.swift; sourceTree = "<group>"; };
+		6B9037882A5EAA1800DF2766 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		6B90378A2A5EAF0400DF2766 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6B90378B2A5EAF0400DF2766 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +265,7 @@
 			children = (
 				6B6637EF2A4D9ACC004229C6 /* Category */,
 				6B6637F12A4D9B0C004229C6 /* Product */,
+				6B90377E2A5EA92F00DF2766 /* Detail */,
 				6B6637F02A4D9AED004229C6 /* Save */,
 			);
 			path = Screen;
@@ -363,6 +374,42 @@
 				6B9037712A56F39700DF2766 /* ProductCellViewModel.swift */,
 			);
 			path = ProductCell;
+			sourceTree = "<group>";
+		};
+		6B90377E2A5EA92F00DF2766 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				6B90377F2A5EA93D00DF2766 /* DetailModel */,
+				6B9037802A5EA94A00DF2766 /* DetailView */,
+				6B9037812A5EA95500DF2766 /* DetailViewModel */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		6B90377F2A5EA93D00DF2766 /* DetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B9037822A5EA9B300DF2766 /* DetailModel.swift */,
+			);
+			path = DetailModel;
+			sourceTree = "<group>";
+		};
+		6B9037802A5EA94A00DF2766 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				6B9037862A5EA9FB00DF2766 /* DetailCustomView.swift */,
+				6B90378A2A5EAF0400DF2766 /* DetailViewController.swift */,
+				6B90378B2A5EAF0400DF2766 /* DetailViewController.xib */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		6B9037812A5EA95500DF2766 /* DetailViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B9037882A5EAA1800DF2766 /* DetailViewModel.swift */,
+			);
+			path = DetailViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B6637C22A4C9485004229C6 /* LaunchScreen.storyboard in Resources */,
+				6B90378D2A5EAF0400DF2766 /* DetailViewController.xib in Resources */,
 				6B6637BF2A4C9485004229C6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9037872A5EA9FB00DF2766 /* DetailCustomView.swift in Sources */,
 				6B90374E2A4DA04200DF2766 /* CategoryViewModel.swift in Sources */,
 				6B6637F62A4D9B98004229C6 /* CategoryModel.swift in Sources */,
 				6B9037722A56F39700DF2766 /* ProductCellViewModel.swift in Sources */,
@@ -510,6 +559,7 @@
 				6B9037542A4DA07D00DF2766 /* SaveViewModel.swift in Sources */,
 				6B6637B32A4C9485004229C6 /* AppDelegate.swift in Sources */,
 				6B66380E2A4D9CCF004229C6 /* SaveViewController.swift in Sources */,
+				6B9037832A5EA9B300DF2766 /* DetailModel.swift in Sources */,
 				6B90377B2A5DA70400DF2766 /* UIColor + Extentsion.swift in Sources */,
 				6B9037612A4F38D000DF2766 /* CategoryCellView.swift in Sources */,
 				6B9037652A4F38F800DF2766 /* CategoryCellViewModel.swift in Sources */,
@@ -526,9 +576,11 @@
 				6B6638042A4D9BFA004229C6 /* SaveView.swift in Sources */,
 				6B9037632A4F38E700DF2766 /* CategoryCellModel.swift in Sources */,
 				6B90375C2A4DB8A300DF2766 /* ProductEndPoint.swift in Sources */,
+				6B90378C2A5EAF0400DF2766 /* DetailViewController.swift in Sources */,
 				6B9037792A5D663800DF2766 /* UIImageView + Extension.swift in Sources */,
 				6B6638022A4D9BF4004229C6 /* SaveModel.swift in Sources */,
 				6B9037522A4DA06400DF2766 /* ProductViewModel.swift in Sources */,
+				6B9037892A5EAA1800DF2766 /* DetailViewModel.swift in Sources */,
 				6B6637FC2A4D9BCD004229C6 /* ProductList.swift in Sources */,
 				6B9037562A4DA51200DF2766 /* Constants.swift in Sources */,
 				6B90377D2A5DC3BB00DF2766 /* APIManagerAsyncAwait.swift in Sources */,

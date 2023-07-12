@@ -1,20 +1,14 @@
 //
-//  Model.swift
+//  DetailModel.swift
 //  iShop
 //
-//  Created by Mommo Sadeghi on 29/06/23.
+//  Created by Mommo Sadeghi on 12/07/23.
 //
 
 import Foundation
 
-struct ProductList: Codable {
-    let products  : [Product]
-    let total     : Int
-    let skip      : Int
-    let limit     : Int
-}
 
-struct Product: Codable {
+struct ProductDetail: Codable {
     let id                 : Int
     let title              : String
     let description        : String
@@ -27,4 +21,3 @@ struct Product: Codable {
     let thumbnail          : String
     let images             : [String]
 }
-

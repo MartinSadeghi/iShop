@@ -116,6 +116,24 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedRow = indexPath.row
+        guard let selectedProduct = productViewModel.selectedCategory else { return }
+         let detailViewController = DetailViewController(product: ProductDetail(
+            id: selectedProduct.id,
+            title: selectedProduct.title,
+            description: selectedProduct.description,
+            price: selectedProduct.price,
+            discountPercentage: selectedProduct.discountPercentage,
+            rating: selectedProduct.rating,
+            stock: selectedProduct.stock,
+            brand: selectedProduct.brand,
+            category: selectedProduct.category,
+            thumbnail: selectedProduct.thumbnail,
+            images: selectedProduct.images)
+        )
+        present(detailViewController, animated: true, completion: nil)
+
+        
     }
     
     /// TableViewCell Height

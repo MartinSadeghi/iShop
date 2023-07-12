@@ -53,8 +53,9 @@ class ProductCell: UITableViewCell {
     func productCellDetailsConfiguration() {
         guard let productItem else { return }
 //      print("productItem from ProductVC\(productItem)")
-        guard let imageURL = productItem.images.first else { return }
-        productImage.setImage(with: imageURL)
+//        guard let imageURL = productItem.images.first else { return }
+//        productImage.setImage(with: imageURL)
+        productImage.setImage(with: productItem.thumbnail)
         productTitleLable.text = productItem.title
         productPriceLable.text = "$ \(productItem.price)"
         productRatingButton.setTitle(" \(productItem.rating)", for: .normal)
