@@ -1,19 +1,20 @@
 //
-//  ProductEndPoint.swift
+//  DetailEndPoint.swift
 //  iShop
 //
-//  Created by Mommo Sadeghi on 29/06/23.
+//  Created by Mommo Sadeghi on 12/07/23.
 //
 
 import Foundation
 
 
 
-enum ProductEndPoint {
-    case product(name: String) // Module - GET
+enum DetailEndPoint {
+    case product(name: String)
 }
 
-extension ProductEndPoint: EndPointType {
+
+extension DetailEndPoint: EndPointType {
     
     
     var path: String {
@@ -22,7 +23,6 @@ extension ProductEndPoint: EndPointType {
             return "\(name)"
         }
     }
-
     
     var baseURL: String {
         switch self {
@@ -31,10 +31,10 @@ extension ProductEndPoint: EndPointType {
         }
     }
     
-    
     var url: URL? {
         return URL(string: "\(baseURL)\(path)")
     }
+    
     
     var method: HTTPMethods {
         switch self {

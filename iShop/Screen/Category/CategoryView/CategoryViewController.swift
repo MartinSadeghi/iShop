@@ -98,7 +98,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         let productViewController = ProductViewController(product: Product(id: selectedRow, title: "", description: "", price: selectedRow, discountPercentage: Double(selectedRow), rating: Double(selectedRow), stock: selectedRow, brand: "", category: categoryViewModel.categories?[selectedRow] ?? "", thumbnail: "", images: []))
         navigationController?.pushViewController(productViewController, animated: true)
         let selectedData = categoryViewModel.categories?[selectedRow]
-        print("selectedData from CategoryVC \(selectedData ?? "Error by selectingRow")")
+//        print("selectedData from CategoryVC \(selectedData ?? "Error by selectingRow")")
     }
 }
 

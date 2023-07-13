@@ -118,7 +118,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedRow = indexPath.row
         guard let selectedProduct = productViewModel.selectedCategory else { return }
-         let detailViewController = DetailViewController(product: ProductDetail(
+         let detailViewController = DetailViewController(product: ProductDetails(
             id: selectedProduct.id,
             title: selectedProduct.title,
             description: selectedProduct.description,

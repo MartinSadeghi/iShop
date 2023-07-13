@@ -8,7 +8,15 @@
 import Foundation
 
 
+
 struct ProductDetail: Codable {
+    let products  : [ProductDetails]
+    let total     : Int
+    let skip      : Int
+    let limit     : Int
+}
+
+struct ProductDetails: Codable {
     let id                 : Int
     let title              : String
     let description        : String

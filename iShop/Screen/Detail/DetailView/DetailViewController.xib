@@ -11,6 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="iShop" customModuleProvider="target">
             <connections>
+                <outlet property="brandLable" destination="XmN-Gd-OhP" id="M4t-Pa-NFB"/>
+                <outlet property="categoryLable" destination="4Qj-ry-7tO" id="VGv-jb-khj"/>
+                <outlet property="descriptionLable" destination="iVY-LT-pMP" id="lT6-x9-6fF"/>
+                <outlet property="detailStackView" destination="erg-To-c57" id="Ogs-Mx-5cf"/>
+                <outlet property="idLable" destination="6ae-ZY-cXk" id="M5U-NL-3yj"/>
+                <outlet property="priceLable" destination="Lf9-6C-AdW" id="Cy3-Vn-UoY"/>
+                <outlet property="rankingLable" destination="r9H-Ma-GPL" id="XG2-mK-cWz"/>
+                <outlet property="stockLable" destination="lDx-qP-5SJ" id="6we-if-TQ9"/>
+                <outlet property="titleLable" destination="1Ew-v3-5QA" id="wwC-HN-h65"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
