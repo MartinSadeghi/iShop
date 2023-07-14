@@ -66,16 +66,16 @@ class DetailViewController: UIViewController {
     }
     
     
-//    func fetchProductDetails2() async {
-//        await APIManagerAsyncAwait.shared.request(modelType: ProductDetail.self, type: DetailEndPoint.product(name: selectedProduct?.category ?? "")) { response in
-//            switch response {
-//            case .success(let productDetails):
-//                print(productDetails)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    func fetchProductDetails2() async {
+        await APIManagerAsyncAwait.shared.request(modelType: ProductDetail.self, type: DetailEndPoint.product(name: selectedProduct?.category ?? "")) { response in
+            switch response {
+            case .success(let productDetails):
+                print(productDetails)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     func fetchProductDetails() async {
         do {
@@ -85,6 +85,11 @@ class DetailViewController: UIViewController {
         } catch {
             print(error)
         }
+    }
+    
+    
+    func theProduct() {
+        
     }
     
 //    func fetchProductDetails() async {
