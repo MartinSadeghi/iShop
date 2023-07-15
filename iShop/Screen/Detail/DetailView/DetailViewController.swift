@@ -66,16 +66,16 @@ class DetailViewController: UIViewController {
     }
     
     
-    func fetchProductDetails2() async {
-        await APIManagerAsyncAwait.shared.request(modelType: ProductDetail.self, type: DetailEndPoint.product(name: selectedProduct?.category ?? "")) { response in
-            switch response {
-            case .success(let productDetails):
-                print(productDetails)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+//    func fetchProductDetails2() async {
+//        await APIManagerAsyncAwait.shared.request(modelType: ProductDetail.self, type: DetailEndPoint.product(name: selectedProduct?.category ?? "")) { response in
+//            switch response {
+//            case .success(let productDetails):
+//                print(productDetails)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
     
     func fetchProductDetails() async {
         do {
@@ -106,13 +106,13 @@ class DetailViewController: UIViewController {
     func configureProductDetails() {
         guard let selectedProduct else { return }
         idLable.text = String(selectedProduct.id)
-        titleLable.text = selectedProduct.title
-        descriptionLable.text = selectedProduct.description
-        priceLable.text = String(selectedProduct.price)
-        rankingLable.text = String(selectedProduct.rating)
-        stockLable.text = String(selectedProduct.stock)
-        brandLable.text = selectedProduct.brand
-        categoryLable.text = selectedProduct.category
+        titleLable.text = "Product: " + selectedProduct.title
+        descriptionLable.text = "About: " + selectedProduct.description
+        priceLable.text = "Price: " + String(selectedProduct.price)
+        rankingLable.text = "Rank: " + String(selectedProduct.rating)
+        stockLable.text = "Stock: " + String(selectedProduct.stock)
+        brandLable.text = "Brand: " + selectedProduct.brand
+        categoryLable.text = "Category: " + selectedProduct.category
     }
 
 
