@@ -114,6 +114,10 @@ class DetailViewController: UIViewController {
         brandLable.text = "Brand: " + selectedProduct.brand
         categoryLable.text = "Category: " + selectedProduct.category
     }
+    
+    func alterConfigureProduct() {
+        
+    }
 
 
 }
