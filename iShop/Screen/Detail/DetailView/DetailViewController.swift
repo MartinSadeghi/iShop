@@ -88,9 +88,6 @@ class DetailViewController: UIViewController {
     }
     
     
-    func theProduct() {
-        
-    }
     
 //    func fetchProductDetails() async {
 //        do {
