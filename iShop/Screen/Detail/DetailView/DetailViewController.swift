@@ -113,7 +113,7 @@ class DetailViewController: UIViewController {
     }
     
     func alterConfigureProduct() {
-        
+        let product = 
     }
 
 
