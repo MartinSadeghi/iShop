@@ -112,9 +112,7 @@ class DetailViewController: UIViewController {
         categoryLable.text = "Category: " + selectedProduct.category
     }
     
-    func alterConfigureProduct() {
-        let product = 
-    }
+   
 
 
 }
