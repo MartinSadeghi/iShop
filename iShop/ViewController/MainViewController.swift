@@ -19,12 +19,17 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBarController()
-        
+        setupTabBarController()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupTabBarController()
+//        setupTabBarController()
     }
     
     
@@ -33,7 +38,7 @@ class MainViewController: UIViewController {
     
     /// Configuring TabBarController
     private func configureTabBarController() {
-        mainTabBarViewController.tabBar.backgroundColor = UIColor(named: "TabBarBackgroundColor")
+        mainTabBarViewController.tabBar.backgroundColor = UIColor.tabBarBackgroundColor
         mainTabBarViewController.tabBar.tintColor = .white
     }
     

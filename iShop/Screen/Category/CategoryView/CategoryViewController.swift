@@ -72,6 +72,17 @@ class CategoryViewController: UIViewController {
         return table
     }()
     
+    
+    
+    private lazy var categorySearchController : UISearchController = {
+        let searchBar = UISearchController()
+//        searchBar.searchResultsUpdater = self
+        searchBar.obscuresBackgroundDuringPresentation = false
+        searchBar.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchBar
+        definesPresentationContext = true
+        return searchBar
+    }()
 }
 
 
