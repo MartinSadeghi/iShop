@@ -26,7 +26,8 @@ class CategoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
+        navigationItem.title = "Categories"
+//        tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -73,16 +74,18 @@ class CategoryViewController: UIViewController {
     }()
     
     
-    
-    private lazy var categorySearchController : UISearchController = {
-        let searchBar = UISearchController()
-//        searchBar.searchResultsUpdater = self
-        searchBar.obscuresBackgroundDuringPresentation = false
-        searchBar.searchBar.placeholder = "Search"
-        navigationItem.searchController = searchBar
+    /// Creating categorySearchController
+    private lazy var categorySearchBar : UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search"
+        searchBar.searchBarStyle = .minimal
+//        navigationItem.searchController = searchBar
         definesPresentationContext = true
+//        searchBar.searchResultsUpdater = self
+//        searchBar.delegate = self
         return searchBar
     }()
+    
 }
 
 
@@ -123,20 +126,34 @@ extension CategoryViewController {
     func configureTableView() {
         categoryTableView.delegate   = self
         categoryTableView.dataSource = self
+        setupCategorySearchBar()
         setupCategoryTableViewConstraint()
     }
     
+    
+    /// Setup categorySearchBar
+    private func setupCategorySearchBar() {
+        view.addSubview(categorySearchBar)
+        categorySearchBar.translatesAutoresizingMaskIntoConstraints = false
+        categorySearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+//        categorySearchBar.bottomAnchor.constraint(equalTo: categoryTableView.topAnchor, constant: 5).isActive = true
+        categorySearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
+        categorySearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
+    }
     
     
     /// Setup CategoryTableViewConstraint
     private func setupCategoryTableViewConstraint() {
         view.addSubview(categoryTableView)
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
-        categoryTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        categoryTableView.topAnchor.constraint(equalTo: categorySearchBar.bottomAnchor).isActive = true
         categoryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
         categoryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
         categoryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
     }
+    
+    
+    
 }
 
 
