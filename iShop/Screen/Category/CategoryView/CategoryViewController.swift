@@ -13,7 +13,8 @@ class CategoryViewController: UIViewController {
     // MARK:  - Variables
     
     private var categoryViewModel = CategoryViewModel()
-    
+    var searchedCategory = CategoryModel()
+    var isSearching = false
     
     // MARK:  - Application Lifecycle
     
@@ -65,14 +66,14 @@ class CategoryViewController: UIViewController {
   
     // MARK:  -    UI Outlets
     
-    /// Creating CategoryTableView
-    private lazy var categoryTableView : UITableView = {
-        let table             = UITableView()
-        table.register(CategoryCell.self, forCellReuseIdentifier: Constants.categoryCellIdentifier)
-        table.backgroundColor = UIColor.categoryVCBackgroundColor
-        return table
-    }()
     
+    /// Creating ContainerView for categorySearchBar and categoryTableView
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     
     /// Creating categorySearchController
     private lazy var categorySearchBar : UISearchBar = {
@@ -82,8 +83,16 @@ class CategoryViewController: UIViewController {
 //        navigationItem.searchController = searchBar
         definesPresentationContext = true
 //        searchBar.searchResultsUpdater = self
-//        searchBar.delegate = self
+        searchBar.delegate = self
         return searchBar
+    }()
+    
+    /// Creating CategoryTableView
+    private lazy var categoryTableView : UITableView = {
+        let table             = UITableView()
+        table.register(CategoryCell.self, forCellReuseIdentifier: Constants.categoryCellIdentifier)
+        table.backgroundColor = UIColor.categoryVCBackgroundColor
+        return table
     }()
     
 }
@@ -94,16 +103,47 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        categoryViewModel.categories?.count ?? 0
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        categoryViewModel.categories?.count ?? 0
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
+//        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
+//        cell.categoryItem = [categoryItems]
+//        return cell
+//    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            if isSearching {
+                return searchedCategory.count
+            } else {
+                return categoryViewModel.categories?.count ?? 0
+            }
+        }
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
-        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
-        cell.categoryItem = [categoryItems]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else {
+            return UITableViewCell()
+        }
+        
+        let categoryItem: CategoryModel
+        if isSearching {
+            categoryItem = [searchedCategory[indexPath.row]]
+        } else {
+            guard let categoryItems = categoryViewModel.categories?[indexPath.row] else {
+                return UITableViewCell()
+            }
+            categoryItem = [categoryItems]
+        }
+        
+        cell.categoryItem = categoryItem // Pass the array directly to the cell
+        
         return cell
     }
+
+    
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -114,6 +154,22 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         let selectedData = categoryViewModel.categories?[selectedRow]
 //        print("selectedData from CategoryVC \(selectedData ?? "Error by selectingRow")")
     }
+}
+
+    // MARK:  - UISearchBarDelegate required protocols
+
+extension CategoryViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        isSearching = !searchText.isEmpty
+
+            searchedCategory = categoryViewModel.categories?.filter { item in
+                return item.range(of: searchText, options: .caseInsensitive) != nil
+            } ?? []
+            DispatchQueue.main.async {
+                self.categoryTableView.reloadData()
+            }
+        }
 }
 
 
@@ -130,27 +186,29 @@ extension CategoryViewController {
         setupCategoryTableViewConstraint()
     }
     
+
+    
     
     /// Setup categorySearchBar
     private func setupCategorySearchBar() {
-        view.addSubview(categorySearchBar)
-        categorySearchBar.translatesAutoresizingMaskIntoConstraints = false
-        categorySearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//        categorySearchBar.bottomAnchor.constraint(equalTo: categoryTableView.topAnchor, constant: 5).isActive = true
-        categorySearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
-        categorySearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
-    }
+            view.addSubview(categorySearchBar)
+            categorySearchBar.translatesAutoresizingMaskIntoConstraints = false
+            categorySearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+//            categorySearchBar.bottomAnchor.constraint(equalTo: categoryTableView.topAnchor, constant: 5).isActive = true
+            categorySearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
+            categorySearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
+        }
     
     
     /// Setup CategoryTableViewConstraint
-    private func setupCategoryTableViewConstraint() {
-        view.addSubview(categoryTableView)
-        categoryTableView.translatesAutoresizingMaskIntoConstraints = false
-        categoryTableView.topAnchor.constraint(equalTo: categorySearchBar.bottomAnchor).isActive = true
-        categoryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
-        categoryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
-        categoryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
-    }
+        private func setupCategoryTableViewConstraint() {
+            view.addSubview(categoryTableView)
+            categoryTableView.translatesAutoresizingMaskIntoConstraints = false
+            categoryTableView.topAnchor.constraint(equalTo: categorySearchBar.bottomAnchor).isActive = true
+            categoryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+            categoryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10).isActive = true
+            categoryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
+        }
     
     
     
