@@ -103,16 +103,16 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        categoryViewModel.categories?.count ?? 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
-//        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
-//        cell.categoryItem = [categoryItems]
-//        return cell
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        categoryViewModel.categories?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
+        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
+        cell.categoryItem = [categoryItems]
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             if isSearching {
@@ -141,7 +141,9 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-
+    
+    
+  
     
     
     
