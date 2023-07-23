@@ -107,20 +107,24 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         categoryViewModel.categories?.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
-        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
-        cell.categoryItem = [categoryItems]
-        return cell
-    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else { return UITableViewCell() }
+//        guard let categoryItems = categoryViewModel.categories?[indexPath.row] else { return UITableViewCell() }
+//        cell.categoryItem = [categoryItems]
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//            if isSearching {
+//                return searchedCategory.count
+//            } else {
+//                return categoryViewModel.categories?.count ?? 0
+//            }
+//        }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if isSearching {
-                return searchedCategory.count
-            } else {
-                return categoryViewModel.categories?.count ?? 0
-            }
-        }
+    func changedAltered() {
+        
+    }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.categoryCellIdentifier, for: indexPath) as? CategoryCell else {
